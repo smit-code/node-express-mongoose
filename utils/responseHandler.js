@@ -1,20 +1,20 @@
 function prepareSuccessResponse (data, message) {
-	return {
-		success: true,
-		data: { data },
-		message,
-		totalRecords: data.length
-	};
+  return {
+    success: true,
+    data: { data },
+    message,
+    totalRecords: data.length
+  }
 }
 
 function prepareErrorResponse (message) {
-	return {
-		success: false,
-		message
-	};
+  return {
+    success: false,
+    message
+  }
 }
 
 module.exports = {
-	prepareSuccessResponse,
-	prepareErrorResponse
-};
+  prepareSuccessResponse,
+  prepareErrorResponse
+}
