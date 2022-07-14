@@ -1,4 +1,4 @@
-const Auth = require('../../models/admin/auth');
+const Auth = require('../../models/auth');
 const responseHelper = require('../../utils/responseHandler');
 const bcrypt = require('bcryptjs');
 

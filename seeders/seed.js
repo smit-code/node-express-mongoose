@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const Auth = require('../models/admin/auth');
+const Auth = require('../models/auth');
 
 exports.seedAdmin = async (req, res, next) => {
 	const admin = await Auth.findOne({ email: process.env.ADMIN_EMAIL });
