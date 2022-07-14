@@ -1,4 +1,4 @@
-const Auth = require('../../models/auth')
+const User = require('../../models/user')
 const responseHelper = require('../../utils/responseHandler')
 const bcrypt = require('bcryptjs')
 
@@ -8,7 +8,7 @@ exports.login = async (req, res, next) => {
   const email = req.body.email
   const password = req.body.password
 
-  const admin = await Auth.findOne({ email })
+  const admin = await User.findOne({ email })
   if (!admin) {
     const error = new Error('Invalid username or password.')
     error.statusCode = 422

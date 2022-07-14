@@ -90,7 +90,6 @@ exports.updateBook = async (req, res, next) => {
     id: book._id.toString(),
     name: book.name,
     description: book.description,
-    image: book.image,
     published_on: book.published_on,
     isbn: book.isbn
   }

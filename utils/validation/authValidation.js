@@ -28,10 +28,7 @@ const authSchema = Joi.object({
     .regex(/^[0-9]{10}$/)
     .allow(null)
     .allow('')
-    .messages({ 'string.pattern.base': 'Phone number must have 10 digits.' }),
-  email_verified_at: Joi.date().allow(null).allow(''),
-  image: Joi.string().allow(null).allow(''),
-  image_path: Joi.string().allow(null).allow('')
+    .messages({ 'string.pattern.base': 'Phone number must have 10 digits.' })
 })
 
 module.exports = authSchema
