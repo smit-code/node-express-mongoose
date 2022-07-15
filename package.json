@@ -20,8 +20,7 @@
     "express": "^4.17.1",
     "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.14",
-    "slug": "^5.1.1"
+    "mongoose": "^6.0.14"
   },
   "devDependencies": {
     "eslint": "^8.19.0",
