@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
 
-const authController = require('../../controllers/admin/authController.js')
+const { login, register } = require('../../controllers/authController.js')
 const Validator = require('../../utils/validateRequest')
 
 const use = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next)
 }
 
-router.post('/', Validator('auth'), use(authController.login))
+router.post('/login', Validator('login'), use(login))
+router.post('/register', Validator('registerUser'), use(register))
 
 module.exports = router

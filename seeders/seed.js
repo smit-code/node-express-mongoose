@@ -1,16 +1,19 @@
 const bcrypt = require('bcryptjs')
-const Auth = require('../models/auth')
+const User = require('../models/user')
 
-exports.seedAdmin = async (req, res, next) => {
-  const admin = await Auth.findOne({ email: process.env.ADMIN_EMAIL })
+exports.seedAdmin = async () => {
+  const admin = await User.findOne({ email: process.env.ADMIN_EMAIL })
   if (!admin) {
     const hashedPw = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10)
-    await Auth.create({
+    await User.create({
       first_name: 'LMS',
       last_name: 'Admin',
       email: process.env.ADMIN_EMAIL,
+      role: 'admin',
       password: hashedPw
     })
     console.log('Admin Seeded')
+  } else {
+    console.log('Admin exist')
   }
 }

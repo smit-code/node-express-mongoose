@@ -30,19 +30,15 @@ const userSchema = Joi.object({
     .label('Confirm password')
     .trim()
     .messages({
-      'any.only': 'Password does not match',
-      'any.required': 'Password must be required.'
+      'any.only': 'Confirm Password and Password should be Same',
+      'any.required': 'Confirm Password must be required.'
     }),
   phone: Joi.string()
     .regex(/^[0-9]{10}$/)
     .allow(null)
     .allow('')
     .trim()
-    .messages({ 'string.pattern.base': 'Phone number must have 10 digits.' }),
-  email_verified_at: Joi.date().allow(null).allow(''),
-  image: Joi.string().allow(null).allow('').trim(),
-  is_active: Joi.boolean().default(false),
-  remember_token: Joi.boolean().default(false)
+    .messages({ 'string.pattern.base': 'Phone number must have 10 digits.' })
 })
 
 module.exports = userSchema

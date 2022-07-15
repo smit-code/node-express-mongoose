@@ -29,7 +29,7 @@ bookSchema.pre('save', async function (next, done) {
       isbn: this.isbn
     })
     if (isbnExists) {
-      if (isbnExists._id.toString() !== this._id.toString()) {
+      if (isbnExists._id !== this._id) {
         const error = new Error(errorsMsg.isbn)
         error.statusCode = 422
         throw error
@@ -39,7 +39,7 @@ bookSchema.pre('save', async function (next, done) {
       name: this.name
     })
     if (nameExists) {
-      if (nameExists._id.toString() !== this._id.toString()) {
+      if (nameExists._id !== this._id) {
         const error = new Error(errorsMsg.name)
         error.statusCode = 422
         throw error

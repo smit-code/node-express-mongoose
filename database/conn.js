@@ -3,12 +3,9 @@ const mongoose = require('mongoose')
 const mongoUrl = process.env.MONGO_URL
 
 mongoose
-  .connect(mongoUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(mongoUrl)
   .then(() => {
-    console.log('Database Connected')
+    console.log('Database Connected...')
   })
   .catch((err) => {
     console.log(err)

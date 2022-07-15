@@ -1,6 +1,6 @@
 const responseHelper = require('./responseHandler')
 
-const errorHandler = (error, req, res, next) => {
+const errorHandler = (error, req, res) => {
   // console.log(error);
   const status = error.statusCode || 500
   const message = error.message

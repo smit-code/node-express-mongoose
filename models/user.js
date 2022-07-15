@@ -6,18 +6,14 @@ const userSchema = new Schema(
     first_name: { type: String },
     last_name: { type: String },
     email: { type: String },
-    email_verified_at: { type: Date },
     password: { type: String },
-    confirm_password: { type: String },
     phone: { type: Number },
-    image: { type: String },
-    is_active: { type: Boolean },
-    remember_token: { type: Boolean }
+    role: { type: String, default: 'user' }
   },
   { timestamps: true }
 )
 
-userSchema.pre('save', async function (next, done) {
+userSchema.pre('save', async function (next) {
   try {
     const emailExists = await mongoose.models.User.findOne({
       email: this.email
