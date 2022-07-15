@@ -1,6 +1,5 @@
-const Book = require('../../models/book')
-// const BookItem = require("../../models/bookItem");
-const { prepareSuccessResponse } = require('../../utils/responseHandler')
+const Book = require('../models/book')
+const { prepareSuccessResponse } = require('../utils/responseHandler')
 
 exports.addBook = async (req, res, next) => {
   const newBook = new Book({
@@ -18,9 +17,7 @@ exports.addBook = async (req, res, next) => {
 
   return res
     .status(200)
-    .json(
-      prepareSuccessResponse(result, 'Book saved successfully')
-    )
+    .json(prepareSuccessResponse(result, 'Book saved successfully'))
 }
 
 exports.getBook = async (req, res, next) => {
@@ -42,12 +39,7 @@ exports.getBook = async (req, res, next) => {
 
   return res
     .status(200)
-    .json(
-      prepareSuccessResponse(
-        result,
-        'Book retrieved successfully'
-      )
-    )
+    .json(prepareSuccessResponse(result, 'Book retrieved successfully'))
 }
 
 exports.getAllBooks = async (req, res, next) => {
@@ -62,12 +54,7 @@ exports.getAllBooks = async (req, res, next) => {
 
   return res
     .status(200)
-    .json(
-      prepareSuccessResponse(
-        result,
-        'Books retrieved successfully.'
-      )
-    )
+    .json(prepareSuccessResponse(result, 'Books retrieved successfully.'))
 }
 
 exports.updateBook = async (req, res, next) => {
@@ -96,12 +83,7 @@ exports.updateBook = async (req, res, next) => {
 
   return res
     .status(200)
-    .json(
-      prepareSuccessResponse(
-        result,
-        'Book updated successfully.'
-      )
-    )
+    .json(prepareSuccessResponse(result, 'Book updated successfully.'))
 }
 
 exports.deleteBook = async (req, res, next) => {
@@ -115,7 +97,5 @@ exports.deleteBook = async (req, res, next) => {
 
   return res
     .status(200)
-    .json(
-      prepareSuccessResponse({}, 'Book deleted successfully.')
-    )
+    .json(prepareSuccessResponse({}, 'Book deleted successfully.'))
 }

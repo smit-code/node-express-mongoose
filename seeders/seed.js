@@ -13,5 +13,7 @@ exports.seedAdmin = async () => {
       password: hashedPw
     })
     console.log('Admin Seeded')
+  } else {
+    console.log('Admin exist')
   }
 }

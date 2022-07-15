@@ -24,11 +24,7 @@ const userSchema = Joi.object({
     .allow(null)
     .allow('')
     .trim()
-    .messages({ 'string.pattern.base': 'Phone number must have 10 digits.' }),
-  email_verified_at: Joi.date().allow(null).allow(''),
-  image: Joi.string().allow(null).allow('').trim(),
-  is_active: Joi.boolean().default(false),
-  remember_token: Joi.boolean().default(false)
+    .messages({ 'string.pattern.base': 'Phone number must have 10 digits.' })
 })
 
 module.exports = userSchema

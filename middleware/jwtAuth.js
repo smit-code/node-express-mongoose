@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-module.exports = (req, res, next) => {
+module.exports = (expectedRole) => (req, res, next) => {
   const authHeader = req.get('Authorization')
   if (!authHeader) {
     const error = new Error('Not authenticated.')
@@ -20,6 +20,15 @@ module.exports = (req, res, next) => {
     error.statusCode = 401
     throw error
   }
+
+  const role = decodedToken.role
+
+  if (expectedRole !== role) {
+    const error = new Error('Not authorised.')
+    error.statusCode = 401
+    throw error
+  }
+
   req.user = decodedToken
   next()
 }

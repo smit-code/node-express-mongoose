@@ -1,33 +1,5 @@
-const User = require('../../models/user')
-const bcrypt = require('bcryptjs')
-const { prepareSuccessResponse } = require('../../utils/responseHandler')
-
-exports.addUser = async (req, res) => {
-  const hashedPw = await bcrypt.hash(req.body.password, 12)
-  const newUser = new User({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: hashedPw,
-    phone: req.body.phone
-  })
-
-  const user = await newUser.save()
-
-  const result = {
-    id: user._id,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    email: user.email,
-    phone: user.phone
-  }
-
-  return res
-    .status(200)
-    .json(
-      prepareSuccessResponse(result, 'User saved successfully.')
-    )
-}
+const User = require('../models/user')
+const { prepareSuccessResponse } = require('../utils/responseHandler')
 
 exports.getUser = async (req, res) => {
   const id = req.params.id
@@ -48,12 +20,7 @@ exports.getUser = async (req, res) => {
 
   return res
     .status(200)
-    .json(
-      prepareSuccessResponse(
-        result,
-        'User retrieved successfully.'
-      )
-    )
+    .json(prepareSuccessResponse(result, 'User retrieved successfully.'))
 }
 
 exports.getAllUsers = async (req, res) => {
@@ -71,12 +38,7 @@ exports.getAllUsers = async (req, res) => {
 
   return res
     .status(200)
-    .json(
-      prepareSuccessResponse(
-        result,
-        'Users retrieved successfully.'
-      )
-    )
+    .json(prepareSuccessResponse(result, 'Users retrieved successfully.'))
 }
 
 exports.updateUser = async (req, res) => {
@@ -105,12 +67,7 @@ exports.updateUser = async (req, res) => {
 
   return res
     .status(200)
-    .json(
-      prepareSuccessResponse(
-        result,
-        'User updated successfully.'
-      )
-    )
+    .json(prepareSuccessResponse(result, 'User updated successfully.'))
 }
 
 exports.deleteUser = async (req, res) => {
@@ -123,7 +80,5 @@ exports.deleteUser = async (req, res) => {
   }
   return res
     .status(200)
-    .json(
-      prepareSuccessResponse({}, 'User deleted successfully.')
-    )
+    .json(prepareSuccessResponse({}, 'User deleted successfully.'))
 }
