@@ -2,19 +2,23 @@ const jwt = require('jsonwebtoken')
 
 module.exports = (expectedRole) => (req, res, next) => {
   const authHeader = req.get('Authorization')
+
   if (!authHeader) {
     const error = new Error('Not authenticated.')
     error.statusCode = 401
     throw error
   }
+
   const token = authHeader.split(' ')[1]
   let decodedToken
+
   try {
     decodedToken = jwt.verify(token, process.env.SECRET_KEY)
   } catch (err) {
     err.statusCode = 401
     throw err
   }
+
   if (!decodedToken) {
     const error = new Error('Not authenticated.')
     error.statusCode = 401
@@ -22,8 +26,9 @@ module.exports = (expectedRole) => (req, res, next) => {
   }
 
   const role = decodedToken.role
+  const authorised = expectedRole.includes(role)
 
-  if (expectedRole !== role) {
+  if (!authorised) {
     const error = new Error('Not authorised.')
     error.statusCode = 401
     throw error

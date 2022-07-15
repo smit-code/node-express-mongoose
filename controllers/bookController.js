@@ -59,22 +59,23 @@ exports.getAllBooks = async (req, res, next) => {
 
 exports.updateBook = async (req, res, next) => {
   const id = req.params.id
-  let book = await Book.findById(id)
+
+  const preBook = {
+    name: req.body.name,
+    description: req.body.description,
+    published_on: req.body.published_on,
+    isbn: req.body.isbn
+  }
+
+  const book = await Book.findByIdAndUpdate(id, preBook)
   if (!book) {
     const error = new Error('Could not find book.')
     error.statusCode = 404
     throw error
   }
 
-  book.name = req.body.name
-  book.description = req.body.description
-  book.published_on = req.body.published_on
-  book.isbn = req.body.isbn
-
-  book = await book.save()
-
   const result = {
-    id: book._id.toString(),
+    id: book._id,
     name: book.name,
     description: book.description,
     published_on: book.published_on,

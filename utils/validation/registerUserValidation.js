@@ -30,8 +30,8 @@ const userSchema = Joi.object({
     .label('Confirm password')
     .trim()
     .messages({
-      'any.only': 'Password does not match',
-      'any.required': 'Password must be required.'
+      'any.only': 'Confirm Password and Password should be Same',
+      'any.required': 'Confirm Password must be required.'
     }),
   phone: Joi.string()
     .regex(/^[0-9]{10}$/)
