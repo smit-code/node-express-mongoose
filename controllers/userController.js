@@ -43,22 +43,23 @@ exports.getAllUsers = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   const id = req.params.id
-  let user = await User.findById(id)
+
+  const preUser = {
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    phone: req.body.phone
+  }
+
+  const user = await User.findByIdAndUpdate(id, preUser, { new: true })
   if (!user) {
     const error = new Error('Could not find user.')
     error.statusCode = 404
     throw error
   }
 
-  user.first_name = req.body.first_name
-  user.last_name = req.body.last_name
-  user.email = req.body.email
-  user.phone = req.body.phone
-
-  user = await user.save()
-
   const result = {
-    id: user._id.toString(),
+    id: user._id,
     first_name: user.first_name,
     last_name: user.last_name,
     email: user.email,
