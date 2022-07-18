@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken')
 
-const { errorHandler } = require('../utils/errorHandler')
-
 module.exports = (expectedRole) => (req, res, next) => {
   const authHeader = req.get('Authorization')
 
@@ -16,9 +14,9 @@ module.exports = (expectedRole) => (req, res, next) => {
 
   try {
     decodedToken = jwt.verify(token, process.env.SECRET_KEY)
-  } catch (err) {
-    err.statusCode = 401
-    return errorHandler(err, req, res)
+  } catch (error) {
+    error.statusCode = 401
+    throw error
   }
 
   if (!decodedToken) {
